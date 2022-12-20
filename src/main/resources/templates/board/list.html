@@ -11,29 +11,65 @@
 <div th:replace="fragment/nav"></div>
 <a href="/board/write" class="btn btn-primary">글쓰기</a>
 
-<table class="table  text-center"style="margin-top: 20px">
-    <thead class=" ">
 
-    <tr >
-        <th class="col-1">번호</th>
-        <th class="col">제목</th>
-        <th class="col-2">작성자</th>
-        <th class="col-2">등록일</th>
-    </tr>
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
 
-    <tr th:each="board : ${boardList} ">
-        <td th:text="${board.bno}"></td>
-        <td th:text="${board.title}"></td>
-        <td th:text="${board.content}"></td>
-        <td th:text="${board.writer}"></td>
-        <td th:text="${board.photo}"></td>
-        <td th:text="${board.regdate}"></td>
-        <td th:text="${board.updatedate}"></td>
-    </tr>
+    <div class="col p-0" th:each="board : ${boardList}">
+        <button type="button" class="border" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <div class="card h-100">
+                <img th:src="@{/upload/photo/{name}(name=${board.photo})}" width="100" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${board.title}"></h5>
+                    <p class="card-text" th:text="${board.content}"></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted" th:text="${board.regdate}"></small>
+                </div>
+            </div>
+        </button>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<style>
+    .border {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+    }
+</style>
 
-    </thead>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-</table>
+<!--<p th:text="${boardList}"></p>-->
+<!--<tr th:each="board : ${boardList} ">
+    <td th:text="${board.bno}"></td>
+    <td th:text="${board.title}"></td>
+    <td th:text="${board.content}"></td>
+    <td th:text="${board.writer}"></td>
+    <td><img th:src="@{/upload/photo/{name}(name=${board.photo})}" width="100"></td>
+    <td th:text="${board.regdate}"></td>
+    <td th:text="${board.updatedate}"></td>
+</tr>-->
+
 
 </body>
 </html>
