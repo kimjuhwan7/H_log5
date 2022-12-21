@@ -1,10 +1,7 @@
-package com.app.h_log.controller;
+package com.app.h_log.controller.Board;
 
-import com.app.h_log.domain.BoardDTO;
-import com.app.h_log.domain.BoardWriteRequest;
-import com.app.h_log.service.BoardListService;
-import com.app.h_log.service.BoardWriteService;
-import lombok.extern.java.Log;
+import com.app.h_log.domain.Board.BoardWriteRequest;
+import com.app.h_log.service.Board.BoardWriteService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

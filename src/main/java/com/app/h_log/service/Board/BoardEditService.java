@@ -1,10 +1,8 @@
-package com.app.h_log.service;
+package com.app.h_log.service.Board;
 
-import com.app.h_log.domain.BoardDTO;
-import com.app.h_log.domain.BoardWriteRequest;
+import com.app.h_log.domain.Board.BoardEditRequest;
 import com.app.h_log.entity.Board;
 import com.app.h_log.repository.BoardRepository;
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,26 +10,24 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Log4j2
 @Service
-public class BoardWriteService {
+public class BoardEditService {
 
     @Autowired
-    private BoardRepository boardRepository;
+    BoardRepository boardRepository;
 
 
-    public int write(BoardWriteRequest boardWriteRequest) {
-        MultipartFile file = boardWriteRequest.getFormFile();
+    public int updateBoard(BoardEditRequest boardEditRequest) {
 
+        MultipartFile file = boardEditRequest.getFormFile();
         File saveDir = null;
         String newFileName = null;
-        if (file != null && !file.isEmpty() && file.getSize() > 0) {
+        if (file != null && !file.isEmpty()) {
 
-
-            //이미지 저장 기본 경로
             String absolutePath = new File("").getAbsolutePath();
 
             log.info(absolutePath);
@@ -50,9 +46,6 @@ public class BoardWriteService {
             String uuid = UUID.randomUUID().toString();
             // 새로운 파일 이름 생성
             newFileName = uuid + file.getOriginalFilename();
-
-            // 파일객체 가져옴
-            file = boardWriteRequest.getFormFile();
             //saveDir(저장경로)에 file.getOrig(실제 파일이름)을 넣어 새로운 저장파일의 경로를 만들어줌
             File newFile = new File(saveDir, newFileName);
 
@@ -64,29 +57,49 @@ public class BoardWriteService {
                 throw new RuntimeException(e);
             }
         }
-
-        Board board = boardWriteRequest.toBoardEntity();
+        Board board = boardEditRequest.toBoardEntity();
 
         if (newFileName != null) {
             board.setPhoto(newFileName);
+        } else {
+            board.setPhoto(null);
         }
         int result = 0;
+
         try {
-            //DB insert
-            result = boardRepository.save(board) != null ? 1 : 0;
+            // db update
+            //result = boardMapper.update(boardDTO);
+
+            // 수정 시간 설정
+            board.setUpdatedate(LocalDate.now());
+
+            boardRepository.save(board);
+
+            // 새로운 파일이 저장 되고 이전 파일이 존재한다면 ! -> 이전 파일을 삭제
+            String oldFileName = boardEditRequest.getOldFile();
+            if (newFileName != null && oldFileName != null && !oldFileName.isEmpty()) {
+                File delOldFile = new File(saveDir, oldFileName);
+                if (delOldFile.exists()) {
+                    delOldFile.delete();
+                    log.info(oldFileName + " 파일 삭제  ");
+                }
+            }
+
+
         } catch (Exception e) {
+
+            log.info("SQLException ....");
+            // 새롭게 저장된 파일 삭제
             if (newFileName != null) {
-                //위에서 저장한 파일 경로 + 파일이름을 가져온다
                 File delFile = new File(saveDir, newFileName);
-                //파일이 있는지 확인
                 if (delFile.exists()) {
-                    //파일 삭제
+                    // 파일 삭제
                     delFile.delete();
                 }
             }
         }
-        return result;
 
+        return result;
 
     }
 }

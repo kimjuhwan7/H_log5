@@ -1,4 +1,4 @@
-package com.app.h_log.controller;
+package com.app.h_log.controller.Board;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.app.h_log.domain;
+package com.app.h_log.domain.Board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +20,6 @@ public class BoardDTO {
     private String photo;
     private LocalDate regdate;
     private LocalDate updatedate;
+
+
 }

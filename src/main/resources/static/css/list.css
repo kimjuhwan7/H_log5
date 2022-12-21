@@ -1,0 +1,10 @@
+.item{
+    display: block; /* 인터넷 익스플로러 호환 */
+    display: -webkit-box;
+    overflow: hidden;
+    line-height: 1.7;
+    max-height: 3.4em; /* 인터넷 익스플로러 호환 */
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis; /* CSS4에서 추가될 말줄임표 사용자 정의 */
+}

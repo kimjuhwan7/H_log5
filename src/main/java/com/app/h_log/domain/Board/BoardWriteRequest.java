@@ -1,4 +1,4 @@
-package com.app.h_log.domain;
+package com.app.h_log.domain.Board;
 
 import com.app.h_log.entity.Board;
 import lombok.AllArgsConstructor;

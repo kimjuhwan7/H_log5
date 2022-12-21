@@ -1,21 +1,18 @@
-package com.app.h_log.service;
+package com.app.h_log.service.Board;
 
-import com.app.h_log.entity.Board;
 import com.app.h_log.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class BoardListService {
+public class BoardDeleteService {
 
     @Autowired
     private BoardRepository boardRepository;
 
+    public int boardDelete(int bno) {
+        return boardRepository.deleteByBno(bno);
 
-    public List<Board> getPage() {
 
-        return boardRepository.findAll();
     }
 }
