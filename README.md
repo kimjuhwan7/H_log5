@@ -16,3 +16,9 @@
 
 데이터 ERD
 ![image](https://user-images.githubusercontent.com/112999677/209281110-226b6380-f967-4299-b096-5e06d76b5f24.png)
+
+
+
+
+#게시판 전체출력페이지
+![image](https://user-images.githubusercontent.com/112999677/209294429-db097c39-7a58-4b58-bb50-e0eb6214b448.png)
