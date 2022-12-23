@@ -14,5 +14,3 @@
 
 데이터 ERD
 ![image](https://user-images.githubusercontent.com/112999677/209281110-226b6380-f967-4299-b096-5e06d76b5f24.png)
-
-구현 기능 및 화면 설명
