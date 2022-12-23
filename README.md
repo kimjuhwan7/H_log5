@@ -22,3 +22,9 @@
 
 #게시판 전체출력페이지
 ![image](https://user-images.githubusercontent.com/112999677/209294429-db097c39-7a58-4b58-bb50-e0eb6214b448.png)
+
+
+#게시판 상세페이지
+
+![image](https://user-images.githubusercontent.com/112999677/209294699-4cb34c24-842f-431c-ab97-cbb2698eb581.png)
+![image](https://user-images.githubusercontent.com/112999677/209294756-77622b46-9671-4570-9b25-6a30db88e4d1.png)
