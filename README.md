@@ -37,4 +37,4 @@
 
 
 #게시판 입력페이지
-![image](https://user-images.githubusercontent.com/112999677/209295061-ff6a4e77-2a89-402c-9a9e-ba2576e7456d.png)
+![image](https://user-images.githubusercontent.com/112999677/209295148-8ab22916-bfc5-4ce9-b6eb-219fa88efc7f.png)
