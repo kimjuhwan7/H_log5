@@ -19,6 +19,6 @@ public class BoardViewController {
     @GetMapping("/board/view")
     public void readArticle(@RequestParam("bno") int bno, Model model) {
         model.addAttribute("searchBno", boardViewService.selectBoard(bno));
-        log.info(boardViewService.selectBoard(bno));
+        log.info("보드뷰컨트롤러 데이터"+boardViewService.selectBoard(bno));
     }
 }

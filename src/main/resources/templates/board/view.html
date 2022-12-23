@@ -20,7 +20,8 @@
         <input type="hidden" name="bno" th:value="${searchBno.bno}">
         <input type="hidden" name="oldFile" th:value="${searchBno.photo}">
         <div style="text-align: center;">
-            <img th:src="@{/upload/photo/{name}(name=${searchBno.photo})}" width="50%" style="margin: 0 auto">
+            <img th:src="@{/upload/photo/{fileName}(fileName=${searchBno.photo})}" width="50%" style="margin: 0 auto">
+            <p th:src="${searchBno.photo}">이미지링크</p>
             <input class="form-control" type="file" id="formFile" name="formFile">
         </div>
         <div class="mb-3">

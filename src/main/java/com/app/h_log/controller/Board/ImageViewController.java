@@ -15,11 +15,11 @@ import java.io.*;
 @Log4j2
 public class ImageViewController {
 
-    @GetMapping(value = "/upload/photo/{fileName}", produces = MediaType.IMAGE_GIF_VALUE)
+    @GetMapping(value = "/upload/photo/{name}", produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody//view페이지에서 찾지 않도록 설정
     public ResponseEntity<byte[]> viewImage(
             //ResponseEntity 사용한 이유는 파일이 있을때와 없을때 구분하기 위해서 사용함
-            @PathVariable("fileName") String fileName) throws IOException {
+            @PathVariable("name") String fileName) throws IOException {
         log.info("ImageView Controller ... ");
         //파일이 있으면 바이트배열에 데이터를 넣어주고 status에는 OK 넣어줌
         byte[] imageByteArray = null;
@@ -27,6 +27,7 @@ public class ImageViewController {
 
         //파일경로에 + 전달받은파일 이름 전달받아 바이너리 코드로 반환
         File savedFile = new File(new File("").getAbsolutePath(), "photo\\" + fileName);
+        log.info("세이브파일" + savedFile);
         // 저장소에 파일찾기
         if (savedFile.exists()) {
             //인풋스트림 응답처리

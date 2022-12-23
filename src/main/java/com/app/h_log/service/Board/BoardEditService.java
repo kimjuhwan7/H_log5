@@ -87,8 +87,7 @@ public class BoardEditService {
 
 
         } catch (Exception e) {
-
-            log.info("SQLException ....");
+            log.info("SQLException ....파일 삭제");
             // 새롭게 저장된 파일 삭제
             if (newFileName != null) {
                 File delFile = new File(saveDir, newFileName);
