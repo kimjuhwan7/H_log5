@@ -21,7 +21,9 @@
             <input type="hidden" name="bno" th:value="${searchBno.bno}">
             <input type="hidden" name="oldFile" th:value="${searchBno.photo}">
             <div style="text-align: center;">
-                <img th:src="@{/upload/photo/{name}(name=${searchBno.photo})}" width="50%" style="margin: 0 auto">
+                <th:block th:if="${searchBno.photo!=null and searchBno.photo != ''}">
+                    <img th:src="@{/upload/photo/{name}(name=${searchBno.photo})}" width="50%" style="margin: 0 auto">
+                </th:block>
                 <input class="form-control" type="file" id="formFile" name="formFile">
             </div>
             <div class="mb-3">
@@ -48,10 +50,12 @@
                                th:value="${searchBno.updatedate}">
                     </div>
                     <a href="/board/list">
-                        리스트 돌아가기
+                        <button>리스트 돌아가기</button>
                     </a>
                     <input type="submit" value="수정사항 저장">
-                    <a th:href="@{/board/delete(bno=${searchBno.bno})}">게시글 삭제하기</a>
+                    <button>  <a th:href="@{/board/delete(bno=${searchBno.bno})}">
+                      게시글 삭제하기
+                    </a></button>
                 </div>
             </div>
         </div>

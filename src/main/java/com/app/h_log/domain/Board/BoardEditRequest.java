@@ -21,14 +21,13 @@ public class BoardEditRequest {
     private MultipartFile formFile;
 
 
-
     public Board toBoardEntity() {
         return Board.builder()
                 .bno(bno)
                 .writer(writer)
                 .title(title)
                 .content(content)
-                .photo(oldFile)
+                .photo(oldFile.isEmpty() ? null : oldFile)
                 .build();
     }
 

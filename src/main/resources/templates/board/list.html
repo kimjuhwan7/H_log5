@@ -18,7 +18,9 @@
 <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
     <div class="col p-0" th:each="board : ${boardList}">
         <div class="card h-100" style="margin: 6px 8px">
-            <img th:src="@{/upload/photo/{name}(name=${board.photo})}" width="100" class="card-img-top">
+            <th:block th:if="${board.photo!=null and board.photo != ''}">
+                <img th:src="@{/upload/photo/{name}(name=${board.photo})}" width="100" class="card-img-top">
+            </th:block>
             <div class="card-body">
                 <h5 class="card-title item" th:text="${board.title}"></h5>
                 <p class="card-text item" th:text="${board.content}"></p>

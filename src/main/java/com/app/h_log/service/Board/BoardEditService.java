@@ -58,11 +58,8 @@ public class BoardEditService {
             }
         }
         Board board = boardEditRequest.toBoardEntity();
-
         if (newFileName != null) {
             board.setPhoto(newFileName);
-        } else {
-            board.setPhoto(null);
         }
         int result = 0;
 
