@@ -11,6 +11,9 @@
 </head>
 
 <body style="margin: 0 auto; max-width: 60%">
+<div id="mouse-cursor">
+    <div></div>
+</div>
 <div th:replace="fragment/nav"></div>
 <a href="/board/write" class="btn btn-primary">글쓰기</a>
 
@@ -34,17 +37,55 @@
     </div>
 </div>
 
-
-<!-- Button trigger modal -->
 <style>
-    .border1 {
-        margin: 3px;
-        border: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: transparent;
+    #mouse-cursor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        will-change: transform;
+        transform: translate3d(100px, 100px, 0);
+        pointer-events: none;
+    }
+
+    #mouse-cursor > div {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        background-color: #000;
+        font-size: 10px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        --cursor-scale: 1;
+        transform: scale3d(var(--cursor-scale), var(--cursor-scale), 1);
+        will-change: transform;
+        transition: transform 150ms ease-in-out, background-color 150ms ease-in-out;
+    }
+
+    #mouse-cursor > div::after {
+        content: attr(data-name);
+        position: absolute;
+        color: #fff;
+        transform: scale(0.45);
+        white-space: nowrap;
+
     }
 </style>
-</body>
+<script>
+    setTimeout(function () {
+        let cursorParent = document.getElementById('mouse-cursor')
+        window.addEventListener('mousemove', mousemove)
+
+        let cursorX = 0, cursorY = 0
+
+        function mousemove(e) {
+            cursorX = e.pageX - cursorParent.offsetWidth / 2
+            cursorY = e.pageY - cursorParent.offsetHeight / 2
+            cursorParent.style.transform =
+                `translate3d(${cursorX}px,${cursorY}px,0)`
+        };
+    }, 1000);
+
+</script>
 </html>
